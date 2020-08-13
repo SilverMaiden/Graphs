@@ -1,7 +1,10 @@
 """
 Simple graph implementation
 """
-from util import Stack, Queue  # These may come in handy
+from util import Stack, Queue # These may come in handy
+#from queue import Queue
+
+
 
 class Graph:
 
@@ -13,26 +16,63 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        #pass code starts here
+        if vertex_id not in self.vertices:
+            self.vertices[vertex_id] = set()
+
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        #pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+        else:
+            print("One or more of the provided verts do not exist.")
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        #pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        #pass  # TODO
+        # take starting vertex
+        # print all neighbours
+        # then go to each neighbour and print all neighbours
+
+        queue = Queue()
+
+        seenBefore = set()
+
+        queue.enqueue(starting_vertex)
+
+        while queue.size() > 0:
+            current = queue.dequeue()
+            print(current)
+            seenBefore.add(current)
+            neighbors = self.get_neighbors(current)
+            for each in neighbors:
+                if each not in seenBefore:
+                    seenBefore.add(each)
+                    queue.enqueue(each)
+
+
+
+
+
+
+
+
+
+
 
     def dft(self, starting_vertex):
         """
